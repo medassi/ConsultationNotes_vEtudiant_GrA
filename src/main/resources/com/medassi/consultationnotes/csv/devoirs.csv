@@ -1,0 +1,13 @@
+id	nom	coeff	matiere
+1	Devoir sur les trames	1	2
+2	Devoir sur couches TCP/IP	1	2
+3	Active Directory	2	2
+4	Commandes Bash	1	2
+5	Serveur DNS	1	2
+6	Integrite referentiel	1	1
+7	Select sans Group By	1	1
+8	Select avec Group by	2	1
+9	Tests conditionnels	1	1
+10	Les boucles	2	1
+11	AP Pergabri Html Css	1	3
+12	AP Wifi	1	4
