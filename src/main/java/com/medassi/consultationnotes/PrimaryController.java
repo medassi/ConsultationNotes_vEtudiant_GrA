@@ -77,23 +77,26 @@ public class PrimaryController implements javafx.fxml.Initializable {
     @FXML
     private void onActionRechercherEtudiant(ActionEvent event) {
         Etudiant e = (Etudiant) cbEtudiants.getSelectionModel().getSelectedItem();
-        throw new UnsupportedOperationException("A faire !!!");
+        for (Matiere m : ms) {
+            float v = OutilsCalculs.moyenneEtudiantMatiere(rs, m, e);
+            System.out.println(m.libelleMatiere + " : " + v);
+        }
     }
 
     @FXML
     private void onActionRechercherMatiere(ActionEvent event) {
         Matiere mSelect = (Matiere) cbMatieres.getSelectionModel().getSelectedItem();
-        System.out.println("Moyenne :" +OutilsCalculs.moyenneMatiere(rs, mSelect));
+        System.out.println("Moyenne :" + OutilsCalculs.moyenneMatiere(rs, mSelect));
     }
 
     @FXML
     private void onActionRechercherDevoir(ActionEvent event) {
         Devoir d = (Devoir) cbDevoirs.getSelectionModel().getSelectedItem();
-        float moyenneDuDevoir = OutilsCalculs.moyenneDevoir(rs, d) ;
+        float moyenneDuDevoir = OutilsCalculs.moyenneDevoir(rs, d);
         alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Consultation des notes");
-        alert.setContentText("Pour le devoir "+d.libelleDevoir +", la moyenne est "+moyenneDuDevoir);
-        alert.showAndWait() ;
+        alert.setContentText("Pour le devoir " + d.libelleDevoir + ", la moyenne est " + moyenneDuDevoir);
+        alert.showAndWait();
     }
 
 }
