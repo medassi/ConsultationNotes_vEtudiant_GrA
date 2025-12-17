@@ -50,8 +50,16 @@ public class OutilsCalculs {
     }
 
     //retourne la moyenne générale de l'étudiant "unEtudiant" passé en paramètre
-    public static float moyenneEtudiant(ObservableList<Resultat> lesResultats, ObservableList<Matiere> lesMatieres, Etudiant unEtudiant) {
-        throw new UnsupportedOperationException("A faire !!!");
+    public static float moyenneEtudiant(ObservableList<Resultat> lesResultats,
+            ObservableList<Matiere> lesMatieres,
+            Etudiant unEtudiant) {
+        float cumulsCoeffsMat = 0;
+        float cumulsMoyennes = 0;
+        for (Matiere mat : lesMatieres) {
+            cumulsMoyennes += moyenneEtudiantMatiere(lesResultats, mat, unEtudiant) * mat.coeffMatiere ;
+            cumulsCoeffsMat += mat.coeffMatiere ;
+        }
+        return cumulsMoyennes / cumulsCoeffsMat ;
     }
 
     //retourne la moyenne générale de toutes les moyennes des étudiants 

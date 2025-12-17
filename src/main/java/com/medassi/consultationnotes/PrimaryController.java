@@ -77,6 +77,7 @@ public class PrimaryController implements javafx.fxml.Initializable {
     @FXML
     private void onActionRechercherEtudiant(ActionEvent event) {
         Etudiant e = (Etudiant) cbEtudiants.getSelectionModel().getSelectedItem();
+        System.out.println("Moyenne "+e.nomEtudiant + ": "+OutilsCalculs.moyenneEtudiant(rs, ms, e));
         for (Matiere m : ms) {
             float v = OutilsCalculs.moyenneEtudiantMatiere(rs, m, e);
             System.out.println(m.libelleMatiere + " : " + v);
