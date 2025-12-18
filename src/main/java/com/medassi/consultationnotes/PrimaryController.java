@@ -70,14 +70,20 @@ public class PrimaryController implements javafx.fxml.Initializable {
     }
 
     private void updateGeneral() {
-        float moyenne = OutilsCalculs.moyenne(rs, ms, es) ;
-       labelGeneMoyenne.setText(String.format("%.1f",moyenne)+"/20");
+        float moyenne = OutilsCalculs.moyenne(rs, ms, es);
+        labelGeneMoyenne.setText(String.format("%.2f", moyenne) + "/20");
+        Etudiant etudiantMini = OutilsCalculs.moyenneEtudiantMini(rs, es, ms);
+        labelGeneMiniEtud.setText(etudiantMini.toString());
+        labelGeneMiniNote.setText(String.format("%.2f",OutilsCalculs.moyenneEtudiant(rs, ms, etudiantMini)) + "/20");
+        Etudiant etudiantMaxi = OutilsCalculs.moyenneEtudiantMaxi(rs, es, ms);
+        labelGeneMaxiEtud.setText(etudiantMaxi.toString());
+        labelGeneMaxiNote.setText(String.format("%.2f",OutilsCalculs.moyenneEtudiant(rs, ms, etudiantMaxi)) + "/20");
     }
 
     @FXML
     private void onActionRechercherEtudiant(ActionEvent event) {
         Etudiant e = (Etudiant) cbEtudiants.getSelectionModel().getSelectedItem();
-        System.out.println("Moyenne "+e.nomEtudiant + ": "+OutilsCalculs.moyenneEtudiant(rs, ms, e));
+        System.out.println("Moyenne " + e.nomEtudiant + ": " + OutilsCalculs.moyenneEtudiant(rs, ms, e));
         for (Matiere m : ms) {
             float v = OutilsCalculs.moyenneEtudiantMatiere(rs, m, e);
             System.out.println(m.libelleMatiere + " : " + v);

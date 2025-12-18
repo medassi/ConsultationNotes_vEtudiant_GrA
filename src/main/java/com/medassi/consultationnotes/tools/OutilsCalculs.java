@@ -56,32 +56,50 @@ public class OutilsCalculs {
         float cumulsCoeffsMat = 0;
         float cumulsMoyennes = 0;
         for (Matiere mat : lesMatieres) {
-            cumulsMoyennes += moyenneEtudiantMatiere(lesResultats, mat, unEtudiant) * mat.coeffMatiere ;
-            cumulsCoeffsMat += mat.coeffMatiere ;
+            cumulsMoyennes += moyenneEtudiantMatiere(lesResultats, mat, unEtudiant) * mat.coeffMatiere;
+            cumulsCoeffsMat += mat.coeffMatiere;
         }
-        return cumulsMoyennes / cumulsCoeffsMat ;
+        return cumulsMoyennes / cumulsCoeffsMat;
     }
 
     //retourne la moyenne générale de toutes les moyennes des étudiants 
     public static float moyenne(ObservableList<Resultat> lesResultats, ObservableList<Matiere> lesMatieres, ObservableList<Etudiant> lesEtudiants) {
-        float cumulMoyennes = 0 ;
-        int nbEtudiant = 0 ;
-        for( Etudiant lEtudiant : lesEtudiants ){
-            float laMoyenneEtu = moyenneEtudiant(lesResultats, lesMatieres, lEtudiant) ;
-            cumulMoyennes = cumulMoyennes + laMoyenneEtu ;
-            nbEtudiant ++ ;
+        float cumulMoyennes = 0;
+        int nbEtudiant = 0;
+        for (Etudiant lEtudiant : lesEtudiants) {
+            float laMoyenneEtu = moyenneEtudiant(lesResultats, lesMatieres, lEtudiant);
+            cumulMoyennes = cumulMoyennes + laMoyenneEtu;
+            nbEtudiant++;
         }
-        return cumulMoyennes / nbEtudiant ;
+        return cumulMoyennes / nbEtudiant;
     }
 
     //retourne l'étudiant qui a obtenu la moyenne générale la plus faible 
-    public static Etudiant moyenneEtudiantMini(ObservableList<Resultat> ns, ObservableList<Etudiant> es, ObservableList<Matiere> ms) {
-        throw new UnsupportedOperationException("A faire !!!");
+    public static Etudiant moyenneEtudiantMini(ObservableList<Resultat> lesResultats, ObservableList<Etudiant> lesEtudiants, ObservableList<Matiere> lesMatieres) {
+        Etudiant leLooser = lesEtudiants.get(0);
+        float laMoyenneMini = moyenneEtudiant(lesResultats, lesMatieres, lesEtudiants.get(0));
+        for (Etudiant lEtudiant : lesEtudiants) {
+            float moyenneDeLEtudiant = moyenneEtudiant(lesResultats, lesMatieres, lEtudiant);
+            if (moyenneDeLEtudiant < laMoyenneMini) {
+                laMoyenneMini = moyenneDeLEtudiant;
+                leLooser = lEtudiant;
+            }
+        }
+        return leLooser;
     }
 
     //retourne l'étudiant qui a obtenu la moyenne générale la plus forte 
     public static Etudiant moyenneEtudiantMaxi(ObservableList<Resultat> lesResultats, ObservableList<Etudiant> lesEtudiants, ObservableList<Matiere> lesMatieres) {
-        throw new UnsupportedOperationException("A faire !!!");
+        Etudiant leTop = lesEtudiants.get(0);
+        float laMoyenneMini = moyenneEtudiant(lesResultats, lesMatieres, lesEtudiants.get(0));
+        for (Etudiant lEtudiant : lesEtudiants) {
+            float moyenneDeLEtudiant = moyenneEtudiant(lesResultats, lesMatieres, lEtudiant);
+            if (moyenneDeLEtudiant > laMoyenneMini) {
+                laMoyenneMini = moyenneDeLEtudiant;
+                leTop = lEtudiant;
+            }
+        }
+        return leTop;
     }
 
     //retourne l'étudiant qui a obtenu la moyenne générale la plus faible dans la matière "uneMatiere" passée en paramètre 
