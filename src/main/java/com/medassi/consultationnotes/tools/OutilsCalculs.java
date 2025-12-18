@@ -64,7 +64,14 @@ public class OutilsCalculs {
 
     //retourne la moyenne générale de toutes les moyennes des étudiants 
     public static float moyenne(ObservableList<Resultat> lesResultats, ObservableList<Matiere> lesMatieres, ObservableList<Etudiant> lesEtudiants) {
-        throw new UnsupportedOperationException("A faire !!!");
+        float cumulMoyennes = 0 ;
+        int nbEtudiant = 0 ;
+        for( Etudiant lEtudiant : lesEtudiants ){
+            float laMoyenneEtu = moyenneEtudiant(lesResultats, lesMatieres, lEtudiant) ;
+            cumulMoyennes = cumulMoyennes + laMoyenneEtu ;
+            nbEtudiant ++ ;
+        }
+        return cumulMoyennes / nbEtudiant ;
     }
 
     //retourne l'étudiant qui a obtenu la moyenne générale la plus faible 
